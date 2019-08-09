@@ -30,12 +30,12 @@ hopefully for others' uses as well.
 
 * I included a model pre-trained on 500k randomly selected lines from
   my [Gutenberg Poetry Corpus](https://github.com/aparrish/gutenberg-poetry-corpus).
-  The dataset itself is also included, and the `prep-poetry-sample-data.ipynb`
-  notebook shows how to prepare the dataset from scratch. I used
-  [BPEmb](https://nlp.h-its.org/bpemb/)'s SentencePiece model to tokenize the
-  dataset before training. (I didn't end up using BPEmb's pre-trained embeddings
-  during training. That's a project for another day, I think! But it was
-  helpful for various reasons to have a fixed vocabulary size.)
+  The `prep-poetry-sample-data.ipynb` notebook shows how to prepare the dataset
+  from scratch. I used [BPEmb](https://nlp.h-its.org/bpemb/)'s SentencePiece
+  model to tokenize the dataset before training. (I didn't end up using BPEmb's
+  pre-trained embeddings during training. That's a project for another day, I
+  think! But it was helpful for various reasons to have a fixed vocabulary
+  size.)
 * The `vaesampler.py` file defines a class `BPEmbVaeSampler` which makes it
   easy to programmatically sample and reconstruct sentences from the included
   pre-trained model, including code to stitch text back together from the

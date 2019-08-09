@@ -3,6 +3,7 @@ import os
 import time
 import importlib
 import argparse
+import datetime
 
 import numpy as np
 
@@ -502,6 +503,13 @@ def main(args):
         if epoch % args.test_nepoch == 0:
             with torch.no_grad():
                 loss, nll, kl, ppl, _ = test(vae, test_data_batch, "TEST", args)
+
+        # save every epoch
+        epoch_save_pre = "%s-%03d.pt" % \
+            (datetime.datetime.utcnow().isoformat(), epoch)
+        epoch_save_fname = os.path.join("models/%s" % args.dataset,
+            epoch_save_pre)
+        torch.save(vae.state_dict(), epoch_save_fname)
 
         vae.train()
 

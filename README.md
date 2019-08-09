@@ -21,6 +21,40 @@ Please contact junxianh@cs.cmu.edu if you have any questions.
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**(a) basic VAE training** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**(b) Aggressive VAE training**
 
+## Additions by Allison
+
+Hi, Allison Parrish here. Huge thanks to the researchers for making this code
+available! This fork has a few additional pieces I added in, to make the
+code a bit easier to work with out-of-the-box for my own creative uses, and
+hopefully for others' uses as well.
+
+* I included a model pre-trained on 500k randomly selected lines from
+  my [Gutenberg Poetry Corpus](https://github.com/aparrish/gutenberg-poetry-corpus).
+  The dataset itself is also included, and the `prep-poetry-sample-data.ipynb`
+  notebook shows how to prepare the dataset from scratch. I used
+  [BPEmb](https://nlp.h-its.org/bpemb/)'s SentencePiece model to tokenize the
+  dataset before training. (I didn't end up using BPEmb's pre-trained embeddings
+  during training. That's a project for another day, I think! But it was
+  helpful for various reasons to have a fixed vocabulary size.)
+* The `vaesampler.py` file defines a class `BPEmbVaeSampler` which makes it
+  easy to programmatically sample and reconstruct sentences from the included
+  pre-trained model, including code to stitch text back together from the
+  `BPEmb` tokens.  The code in `vae-sampler.ipynb` takes the `BPEmbVaeSampler`
+  class through its paces.
+* The model is [Runway](https://runwayml.com/)-ready; the included
+  `runway_model.py` and `runway.yml` make it possible to build a Runway image
+  and run the model in the Runway app. (Thank you Runway for supporting my work
+  on this fork!)
+* I added a `temperature` parameter to `LSTMDecoder`'s `.sample_decode()`
+  method to set the temperature for softmax sampling when decoding.
+* The training code in `text.py` now saves the model weights on every epoch. (I
+  found that it was helpful to be able to pick-and-choose between epochs, based
+  on the reconstruction and KL loss figures.)
+* The included `requirements.txt` should be all you need to get the code and
+  model up and running.
+
+And now back to the original README!
+
 ## Posterior Mean Space
 Our approach is inspired by the definition of "posterior mean space", which helps observe the posterior status over course of training and analyze VAE training behavior from the perspective of training dynamics. In the paper we experimented with a toy dataset and a scalar latent variable, so that posterior mean space is on a 2-d plane.
 

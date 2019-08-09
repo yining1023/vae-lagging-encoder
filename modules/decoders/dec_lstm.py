@@ -317,7 +317,7 @@ class LSTMDecoder(DecoderBase):
 
         return decoded_batch
 
-    def sample_decode(self, z):
+    def sample_decode(self, z, temperature=1.0):
         """sampling decoding from z
         Args:
             z: (batch_size, nz)
@@ -349,7 +349,7 @@ class LSTMDecoder(DecoderBase):
 
             # (batch_size, 1, vocab_size) --> (batch_size, vocab_size)
             decoder_output = self.pred_linear(output)
-            output_logits = decoder_output.squeeze(1)
+            output_logits = decoder_output.squeeze(1) / temperature
 
             # (batch_size)
             sample_prob = F.softmax(output_logits, dim=1)

@@ -19,7 +19,8 @@ class MaskedConv2d(nn.Conv2d):
         self.mask[:, :, kH // 2 + 1:] = 0
 
     def forward(self, x):
-        self.weight.data *= self.mask.cuda()
+        mask = self.mask.type(torch.FloatTensor)
+        self.weight.data *= mask.cuda()
         return super(MaskedConv2d, self).forward(x)
 
 class ResidualBlock(nn.Module):

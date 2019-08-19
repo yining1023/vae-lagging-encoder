@@ -55,7 +55,7 @@ class VocabEntry(object):
     @staticmethod
     def from_corpus(fname):
         vocab = VocabEntry()
-        with open(fname) as fin:
+        with open(fname, encoding="utf-8") as fin:
             for line in fin:
                 _ = [vocab.add(word) for word in line.split()]
 
@@ -83,7 +83,7 @@ class MonoTextData(object):
             vocab['</s>'] = 2
             vocab['<unk>'] = 3
 
-        with open(fname) as fin:
+        with open(fname, encoding="utf-8") as fin:
             for line in fin:
                 if label:
                     split_line = line.split('\t')

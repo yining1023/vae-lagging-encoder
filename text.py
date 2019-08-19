@@ -115,7 +115,7 @@ def reconstruct(model, data, strategy, fname, device):
                 fout.write(" ".join(sent) + "\n")
 
 def sample_from_prior(model, z, strategy, fname):
-    with open(fname, "w") as fout:
+    with open(fname, "w", encoding="utf-8", encoding="utf-8") as fout:
         decoded_batch = model.decode(z, strategy)
 
         for sent in decoded_batch:

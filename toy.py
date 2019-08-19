@@ -215,7 +215,7 @@ def plot_multiple(model, plot_data, grid_z,
                  'kl': report_loss_kl / report_num_sample,
                  'mi': report_mi / report_num_sample
                  }
-    pickle.dump(save_data, open(save_path, 'wb'))
+    pickle.dump(save_data, open(save_path, 'wb', encoding="utf-8"))
 
 def plot_single(infer_mean, posterior_mean, args):
 
@@ -228,7 +228,7 @@ def plot_single(infer_mean, posterior_mean, args):
     save_data = {'posterior': posterior_mean.cpu().numpy(),
                  'inference': infer_mean.cpu().numpy(),
                  }
-    pickle.dump(save_data, open(save_path, 'wb'))
+    pickle.dump(save_data, open(save_path, 'wb', encoding="utf-8"))
 
 
 

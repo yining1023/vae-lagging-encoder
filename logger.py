@@ -6,7 +6,7 @@ import sys
 class Logger(object):
   def __init__(self, output_file):
     self.terminal = sys.stdout
-    self.log = open(output_file, "w")
+    self.log = open(output_file, "w", encoding="utf-8")
 
   def write(self, message):
     print(message, end="", file=self.terminal, flush=True)

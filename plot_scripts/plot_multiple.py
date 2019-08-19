@@ -9,7 +9,7 @@ plt.rcParams.update({'font.size': 20})
 plt.tight_layout()
 
 def load_data(fname):
-    data = pickle.load(open(fname, 'rb'))
+    data = pickle.load(open(fname, 'rb', encoding="utf-8"))
     return data['posterior'], data['inference']
 
 def plot_multiple(x, y, scale=None, fname='', xmin=-3.0, xmax=3.0, ymin=-3.0, ymax=3.0, 

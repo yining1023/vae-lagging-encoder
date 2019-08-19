@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     data_path = "plot_data/single/aggr%d_single.pickle" % args.aggressive
     save_path = os.path.join(save_dir, "aggr%d_id%d_single.pdf" % (args.aggressive, args.id))
-    data = pickle.load(open(data_path, 'rb'))
+    data = pickle.load(open(data_path, 'rb', encoding="utf-8"))
 
     plot_x = data["posterior"][args.id][11:20]
     plot_y = data['inference'][args.id][11:20]
